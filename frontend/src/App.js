@@ -13,7 +13,7 @@ function App() {
       <div id="page-body">
         <Routes>
           <Route path='/' element={<HomePage />} />
-          <Route path='/:monthId' element={<EachMonthPage />} />
+          <Route path='/:yearId/:monthId' element={<EachMonthPage />} />
         </Routes>
       </div>
     </div>
