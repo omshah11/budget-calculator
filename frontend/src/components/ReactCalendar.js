@@ -14,7 +14,8 @@ const ReactCalendar = () => {
   return (
     <div>
       <Calendar onChange={onChange} value={date} />
-      <Link to={`/${(date.getMonth()+1).toString()}`}>
+      <Link to={`/${(date.getFullYear()).toString()}/${(date.getMonth()+1).toString()}`}>
+      {console.log(date.getFullYear() + 1)}
       {console.log(date.getMonth() + 1)}
       <p>Check this month's expenses</p>
       </Link>

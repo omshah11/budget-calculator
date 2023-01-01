@@ -45,7 +45,9 @@ app.post('/api/:year/:month/addExpense', async (req,res) => {
     //const {year} = req.params.year;
     const {year} = req.params;
     const {month} = req.params;
-    const {newExpense, value} = req.body;
+    const {expense, price} = req.body;
+    console.log(expense);
+    console.log(price);
     
 
     const client = new MongoClient('mongodb://127.0.0.1:27017');
@@ -57,8 +59,8 @@ app.post('/api/:year/:month/addExpense', async (req,res) => {
     const currTotalExp = article.totalExpense;
 
     await db.collection('articles').updateOne({year, month}, {
-        $push: {content : newExpense},
-        $set: {totalExpense: String(parseInt(currTotalExp) + parseInt(value))}
+        $push: {content : {expense, price}},
+        $set: {totalExpense: currTotalExp + price}
     })
 
     if (article){

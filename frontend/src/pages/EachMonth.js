@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import axios from 'axios';
 import months from "../data/months";
 import MonthListPage from "./MonthList";
+import AddExpenseForm from "../components/AddExpensesForm";
+import ExpenseList from "../components/ExpenseList";
 
 const EachMonthPage = () => {
     const [monthInfo, setMonthInfo] = useState({totalExpense: "$0", content: []});
@@ -26,7 +28,12 @@ const EachMonthPage = () => {
         <div>
             <h1>This is the Budget page of month {monthId}, year {yearId}</h1>
             {/* <p>Total expense for this month: {month.totalExpense}</p> */}
-            <p>Updated expense {monthInfo.totalExpense} and content {monthInfo.content}</p>
+            <h2>Total expense this month: {monthInfo.totalExpense}</h2>
+            <AddExpenseForm
+                yearId={yearId}
+                monthId={monthId}
+                onBudgetUpdated={updatedBudget => setMonthInfo(updatedBudget)} />
+            <ExpenseList content={monthInfo.content} />
         </div>
     )
 }
